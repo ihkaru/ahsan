@@ -1,19 +1,70 @@
 Pemilik
 
+Kategori (orang,relasi,user,jenis_kontak,wadah,statuswadah,revieworang,Inventoris,StatusHistoriInventoris,relasiwadah,reviewevent,ReviewJabatanEventOrang,ReviewJabatanWadahOrang)
+id
+Nama
+Tipe
+Deskripsi
+
+Orang
+id
+nama
+asal
+tanggal_lahir
+link cv
+
+Foto
+caption
+uploader(user_id)
+link
+
 User
+id
 username
 email
 password
 kategori_id
+orang_id
 
-Orang
+Wadah
 nama
-asal
-link_sosmed
+deskripsi
+kategori_id
+waktu_dibentuk
+status(kategori_id)
+
+
+Ide
+id
+orang_id
+latarbelakang
+permasalahan
+solusi
 kontak
-link cv
+anon
+
+Kontak
+id
+orang_id
+(jenis_kontak)kategori_id
+nilai
+
+FotoOrang
+
+FotoEventWaktu
+
+FotoWadah
+
+FotoInventoris
+
+Dosen
+id
+jurusan
+minat_penelitian
+orang_id
 
 Mahasiswa
+id
 orang_id
 angkatan
 jurusan
@@ -24,19 +75,25 @@ kelas_id
 tahun
 
 Kelas
-nama
+id
 
 ReviewOrang
-pemateri_id
+orang_id
 user_id
 kategori_id
 catatan
 rate
 anon
+level
 
 Inventoris
+id
+masa_mulai_pakai
+masa_akhir_pakai
 Nama
-Kategori
+kategori_id
+jumlah
+harga
 
 Histori_Inventoris
 Inventoris
@@ -50,15 +107,6 @@ Alamat
 Nama
 link_map
 
-Kategori (orang,relasi)
-Nama
-Tipe
-Deskripsi
-
-Wadah
-nama
-deskripsi
-kategori_id
 
 Wadah_Wadah (Ormawa, UKM, Divisi, Subdivisi, Bidang, Riset, Himada, PKL)
 wadah1
@@ -66,17 +114,26 @@ wadah2
 relasi(kategori_id)
 
 JabatanWadahOrang
+id
 orang_id
 wadah_id
 jabatan_id
 tahun_mulai
 tahun_selesai
 
+ReviewJabatanWadahOrang
+jabatan_wadah_orang_id
+user_id
+kategori_id
+catatan
+rate
+anon
+
 Jabatan
 nama
 kategori_id
 
-Event (PMB, )
+Event (PMB)
 Nama
 Tujuan
 Wadah
@@ -88,9 +145,18 @@ waktu_mulai_event
 waktu_selesai_event
 
 EventWaktuOrang
+id
 eventwaktu_id
 orang_id
-Jabatan_id
+jabatan_id
+
+ReviewJabatanEventOrang
+event_waktu_orang_id
+user_id
+kategori_id
+catatan
+rate
+anon
 
 ReviewEvent
 event_waktu
@@ -102,6 +168,7 @@ anon
 
 Catatan_EventWaktu
 nama
+eventwaktu
 catatan
 anon
 user_id
