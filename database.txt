@@ -1,6 +1,11 @@
 Pemilik
 
-Kategori (orang,relasi,user,jenis_kontak,wadah,statuswadah,revieworang,Inventoris,StatusHistoriInventoris,relasiwadah,reviewevent,ReviewJabatanEventOrang,ReviewJabatanWadahOrang)
+Kabkot
+Kabkot_id
+prov_id
+nama
+
+Kategori (orang,relasi,user,jenis_kontak,wadah,statuswadah,revieworang,Inventoris,StatusHistoriInventoris,relasiwadah,reviewevent,ReviewJabatanEventOrang,ReviewJabatanWadahOrang,jenis_poin,relasiOrang)
 id
 Nama
 Tipe
@@ -8,15 +13,22 @@ Deskripsi
 
 Orang
 id
+jenis_kelamin
 nama
 asal
 tanggal_lahir
 link cv
 
 Foto
+uploaded_at(user_id)
 caption
 uploader(user_id)
 link
+
+Orang_Orang
+orang1
+orang2
+relasi(kategori_id)
 
 User
 id
@@ -33,6 +45,10 @@ kategori_id
 waktu_dibentuk
 status(kategori_id)
 
+Poin
+jenis_poin(kategori_id)
+poin
+tanggal
 
 Ide
 id
@@ -93,10 +109,11 @@ masa_akhir_pakai
 Nama
 kategori_id
 jumlah
-harga
+harga_satuan
+pemilik(wadah_id)
 
 Histori_Inventoris
-Inventoris
+Inventoris_id
 Pemindah(orang_id)
 Status(kategori_id)
 Alamat Tujuan
