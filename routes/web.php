@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtisanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,5 @@ Route::get('/login', function (){
 Route::get('/', function () {
     return redirect('/admin');
 });
+Route::get("/artisan",[ArtisanController::class,"run"]);
 
