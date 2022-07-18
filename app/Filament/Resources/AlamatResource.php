@@ -19,6 +19,10 @@ class AlamatResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Manajemen Lokasi';
+
+    protected static ?string $navigationLabel = 'Alamat';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -52,14 +56,14 @@ class AlamatResource extends Resource
                 Tables\Actions\ForceDeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -68,8 +72,8 @@ class AlamatResource extends Resource
             'view' => Pages\ViewAlamat::route('/{record}'),
             'edit' => Pages\EditAlamat::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

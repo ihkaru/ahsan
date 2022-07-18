@@ -19,6 +19,11 @@ class KabkotResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationLabel = 'Kabupaten';
+
+    protected static ?string $navigationGroup = 'Manajemen Lokasi';
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -52,14 +57,14 @@ class KabkotResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -68,5 +73,5 @@ class KabkotResource extends Resource
             'view' => Pages\ViewKabkot::route('/{record}'),
             'edit' => Pages\EditKabkot::route('/{record}/edit'),
         ];
-    }    
+    }
 }

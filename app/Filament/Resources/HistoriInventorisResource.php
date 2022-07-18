@@ -19,6 +19,12 @@ class HistoriInventorisResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationLabel = 'Riwayat Inventoris';
+
+    protected static ?string $navigationGroup = 'Manajemen Inventoris';
+
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -62,14 +68,14 @@ class HistoriInventorisResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -78,5 +84,5 @@ class HistoriInventorisResource extends Resource
             'view' => Pages\ViewHistoriInventoris::route('/{record}'),
             'edit' => Pages\EditHistoriInventoris::route('/{record}/edit'),
         ];
-    }    
+    }
 }

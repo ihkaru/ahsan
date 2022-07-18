@@ -19,6 +19,11 @@ class InventorisResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationLabel = 'Inventoris';
+
+    protected static ?string $navigationGroup = 'Manajemen Inventoris';
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -45,7 +50,7 @@ class InventorisResource extends Resource
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('masa_selesai_pakai')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('nama'),
+                Tables\Columns\TextColumn::make('nama')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('kategori_id'),
                 Tables\Columns\TextColumn::make('jumlah'),
                 Tables\Columns\TextColumn::make('pemilik'),
@@ -67,14 +72,14 @@ class InventorisResource extends Resource
                 Tables\Actions\ForceDeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -83,8 +88,8 @@ class InventorisResource extends Resource
             'view' => Pages\ViewInventoris::route('/{record}'),
             'edit' => Pages\EditInventoris::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

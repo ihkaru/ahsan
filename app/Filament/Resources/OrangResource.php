@@ -19,6 +19,10 @@ class OrangResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationLabel = 'Orang';
+
+    // protected static ?string $recordTitleAttribute = 'nama';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -53,16 +57,16 @@ class OrangResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama'),
-                Tables\Columns\TextColumn::make('jenis_kelamin'),
-                Tables\Columns\TextColumn::make('tanggal_lahir')->dateTime(),
+                Tables\Columns\TextColumn::make('nama')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('jenis_kelamin')->sortable(),
+                Tables\Columns\TextColumn::make('tanggal_lahir')->dateTime()->sortable(),
                 Tables\Columns\TextColumn::make('asal_id'),
                 Tables\Columns\TextColumn::make('domisili'),
-                Tables\Columns\TextColumn::make('domisili_update')->dateTime(),
+                Tables\Columns\TextColumn::make('domisili_update')->dateTime()->sortable(),
                 Tables\Columns\TextColumn::make('link_cv'),
-                Tables\Columns\TextColumn::make('deleted_at')->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')->dateTime(),
+                Tables\Columns\TextColumn::make('deleted_at')->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -102,4 +106,8 @@ class OrangResource extends Resource
                 SoftDeletingScope::class,
             ]);
     }
+    // public static function getGloballySearchableAttributes(): array
+    // {
+    //     return ['nama'];
+    // }
 }

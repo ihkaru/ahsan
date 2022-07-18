@@ -19,6 +19,11 @@ class ProvinsiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationLabel = 'Provinsi';
+
+    protected static ?string $navigationGroup = 'Manajemen Lokasi';
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -49,14 +54,14 @@ class ProvinsiResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -65,5 +70,5 @@ class ProvinsiResource extends Resource
             'view' => Pages\ViewProvinsi::route('/{record}'),
             'edit' => Pages\EditProvinsi::route('/{record}/edit'),
         ];
-    }    
+    }
 }

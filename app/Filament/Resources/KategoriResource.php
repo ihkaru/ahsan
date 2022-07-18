@@ -19,6 +19,8 @@ class KategoriResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationLabel = 'Kategori';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -54,14 +56,14 @@ class KategoriResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -70,5 +72,5 @@ class KategoriResource extends Resource
             'view' => Pages\ViewKategori::route('/{record}'),
             'edit' => Pages\EditKategori::route('/{record}/edit'),
         ];
-    }    
+    }
 }

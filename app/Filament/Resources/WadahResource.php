@@ -19,6 +19,10 @@ class WadahResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationLabel = 'Wadah';
+
+    protected static ?string $navigationGroup = 'Manajemen Wadah';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -66,14 +70,14 @@ class WadahResource extends Resource
                 Tables\Actions\ForceDeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -82,8 +86,8 @@ class WadahResource extends Resource
             'view' => Pages\ViewWadah::route('/{record}'),
             'edit' => Pages\EditWadah::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
