@@ -193,3 +193,8 @@ user_id
 Catatan_Kategori
 catatan_event_waktu_kategori
 tipe
+
+WebVersion
+versi
+terbaru
+description
