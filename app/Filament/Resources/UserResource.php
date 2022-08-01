@@ -4,14 +4,18 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\Orang;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
@@ -26,18 +30,38 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label("Nama")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
+                    ->label("Email")
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\TextInput::make('password')
+                    ->label("Password")
                     ->password()
                     ->required()
+                    ->minLength(8)
+                    ->same("passwordConfirmation")
+                    ->dehydrateStateUsing(fn($state)=>Hash::make($state))
                     ->maxLength(255),
-                Forms\Components\TextInput::make('orang_id'),
+                TextInput::make('passwordConfirmation')
+                    ->label("Konfirmasi Password")
+                    ->password()
+                    ->required()
+                    ->minLength(8)
+                    ->maxLength(255)
+                ,
+                Select::make('orang_id')
+                    ->label("Untuk Orang")
+                    ->relationship('orang','nama')
+                    ->searchable()
+                    // ->getSearchResultsUsing(fn(string $search) => Orang::where('nama','like',"%{$search}%")->limit(50)->pluck('nama','id'))
+                    // ->getOptionLabelUsing(fn($value): ?string => Orang::find($value)?->name)
+                    // ->dehydrateStateUsing(fn($state)=>$state->id)
+                    ,
+
             ]);
     }
 
