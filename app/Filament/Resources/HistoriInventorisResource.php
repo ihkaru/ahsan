@@ -6,6 +6,9 @@ use App\Filament\Resources\HistoriInventorisResource\Pages;
 use App\Filament\Resources\HistoriInventorisResource\RelationManagers;
 use App\Models\HistoriInventoris;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -29,17 +32,36 @@ class HistoriInventorisResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('pemindah')
-                    ->required(),
-                Forms\Components\TextInput::make('status')
-                    ->required(),
-                Forms\Components\TextInput::make('alamat_tujuan')
-                    ->required(),
-                Forms\Components\TextInput::make('tujuan_pemindahan')
+                Select::make('pemindah')
+                    ->label("Pemindah")
+                    ->placeholder("Cari nama seseorang")
+                    ->relationship('orang','nama')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('pengguna')
-                    ->required(),
+                    ->searchable(),
+                Select::make('inventoris_id')
+                    ->label("Nama Inventoris")
+                    ->relationship('inventoris','nama')
+                    ->required()
+                    ->searchable(),
+                Select::make('alamat_tujuan')
+                    ->label("Alamat Tujuan")
+                    ->relationship('alamat','nama')
+                    ->required()
+                    ->searchable(),
+                Select::make('status')
+                    ->label("Status")
+                    ->relationship('kategori','nama',fn(Builder $q)=>$q->historiInventoris())
+                    ->required()
+                    ->searchable(),
+                Select::make('pengguna')
+                    ->label("Pengguna")
+                    ->placeholder("Cari nama wadah yang menggunakan")
+                    ->relationship('wadah','nama')
+                    ->required()
+                    ->searchable(),
+                DateTimePicker::make('dipindah_pada')
+                    ->label("Dipindahkan Pada")
+                    ->required()
             ]);
     }
 

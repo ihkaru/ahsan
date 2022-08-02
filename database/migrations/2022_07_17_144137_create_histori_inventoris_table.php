@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Alamat;
+use App\Models\Inventoris;
 use App\Models\Kategori;
 use App\Models\Orang;
 use App\Models\Wadah;
@@ -19,11 +20,14 @@ return new class extends Migration
     {
         Schema::create('histori_inventoris', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Inventoris::class);
             $table->foreignIdFor(Orang::class,"pemindah");
             $table->foreignIdFor(Kategori::class,"status");
             $table->foreignIdFor(Alamat::class,"alamat_tujuan");
             $table->string("tujuan_pemindahan");
             $table->foreignIdFor(Wadah::class,"pengguna");
+            $table->timestamp("dipindah_pada");
+            $table->unsignedMediumInteger("jumlah");
             $table->timestamps();
         });
     }
