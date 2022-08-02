@@ -36,4 +36,5 @@ return [
         'redirect' => env('APP_URL').'/login/google/callback',
     ],
 
+
 ];
