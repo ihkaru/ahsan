@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ArtisanController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function (){
-    return redirect("/admin/login");
-})->name("login");
+
+Route::controller(AuthController::class)->prefix('/login')->name('login')->group(function(){
+    Route::get('/','login')->name('');
+    Route::get('/google',[GoogleController::class,'login'])->name('.google');
+    Route::get('/google/callback',[GoogleController::class,'callback'])->name('.google.callback');
+});
+
 Route::get('/', function () {
     return redirect('/admin');
 });
+Route::middleware(['auth'])->group(function(){
+    Route::get('logout',[AuthController::class,'logout'])->name('logout');
+    Route::controller(UserController::class)->prefix('users')->name('users.')->group(function(){
+        Route::get('/','index')->name('index');
+    });
+});
+
 Route::get("/artisan",[ArtisanController::class,"run"]);
 
