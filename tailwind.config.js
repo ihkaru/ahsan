@@ -7,5 +7,5 @@ module.exports = {
 	theme: {
 		extend: {},
 	},
-	plugins: [],
+    presets: [require("./vendor/filament/filament/tailwind.config.js")],
 }
